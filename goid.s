@@ -23,35 +23,35 @@
  * Return the internal thread ID of the calling
  * goroutine from thread local storage (TLS).
  */  
-TEXT ·goidFast(SB), NOSPLIT, $0x0-0x8
+TEXT ·goidFast(SB), NOSPLIT|NOFRAME, $0x0-0x8
 #ifdef GOARCH_386
     MOVL (TLS), CX
     MOVL g_goid(CX), CX
-    MOVL CX, ret_lo+0x0(SP)
+    MOVL CX, ret_lo+0x0(FP)
 #endif
 #ifdef GOARCH_amd64
     MOVQ (TLS), CX
     MOVQ g_goid(CX), CX
-    MOVQ CX, ret+0x8(SP)
+    MOVQ CX, ret+0x0(FP)
 #endif
 #ifdef GOARCH_amd64p32
     MOVQ (TLS), CX
     MOVQ g_goid(CX), CX
-    MOVQ CX, ret+0x8(SP)
+    MOVQ CX, ret+0x0(FP)
 #endif
 #ifdef GOARCH_arm
     MOVW g, R1
     MOVW g_goid(R1), R1
-    MOVW R1, ret_lo+0x4(SP)
+    MOVW R1, ret_lo+0x0(FP)
 #endif
 #ifdef GOARCH_arm64
     MOVD g, R1
     MOVD g_goid(R1), R1
-    MOVD R1, ret+0x8(SP)
+    MOVD R1, ret+0x0(FP)
 #endif
 #ifdef GOARCH_riscv64
     MOV (g), A0
     MOV g_goid(A0), A0
-    MOV A0, ret+0x8(SP)
+    MOV A0, ret+0x0(FP)
 #endif
     RET
