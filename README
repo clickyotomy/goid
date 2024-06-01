@@ -1,0 +1,19 @@
+goid
+----
+
+Package "goid" provides a way to retrieve the runtime ID of
+the current goroutine from it's thread local storage (TLS).
+
+The function "Get()" retrieves the ID of the calling goroutine.
+If an architecture-specific assembly routine is defined, it is
+called, otherwise a fallback (slow) implementation is used to
+get the same information.
+
+It should be noted that the runtime intentionally avoids
+providing an interface to expose the goroutine ID. From [1]:
+
+> Goroutines do not have names; they are just anonymous workers.
+> They expose no unique identifier, name, or data structure to
+> the programmer.
+
+[1]: https://go.dev/doc/faq#no_goroutine_id
