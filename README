@@ -2,7 +2,7 @@ goid
 ----
 
 Package "goid" provides a way to retrieve the runtime ID of
-the current goroutine from it's thread local storage (TLS).
+the current goroutine from its thread local storage (TLS).
 
 The function "Get()" retrieves the ID of the calling goroutine.
 If an architecture-specific assembly routine is defined, it is
